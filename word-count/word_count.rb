@@ -1,9 +1,9 @@
 class Phrase
   def initialize(phrase)
-    @words = phrase.scan(/\b[\w']+\b/).map(&:downcase)
+    @words = phrase.downcase.scan(/\b[\w\']+\b/)
   end
 
   def word_count
-    @words.group_by(&:itself).transform_values(&:size)
+    @words.group_by(&:itself).transform_values(&:count)
   end
 end
