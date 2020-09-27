@@ -1,11 +1,11 @@
 class Series
-  def initialize(numbers)
-    @numbers = numbers
+  def initialize(digits)
+    @digits = digits.chars
   end
 
-  def slices(size)
-    raise ArgumentError if size > @numbers.size
+  def slices(length)
+    raise ArgumentError if length > @digits.length
 
-    @numbers.chars.each_cons(size).map(&:join)
+    @digits.each_cons(length).map(&:join)
   end
 end
