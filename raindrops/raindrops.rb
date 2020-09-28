@@ -1,20 +1,12 @@
-class Raindrops
-  def self.convert(n)
-    output = ''
-
-    if n % 3 == 0
-      output += 'Pling'
-    end
+module Raindrops
+  def self.convert(number)
+    output = ""
     
-    if n % 5 == 0
-      output += 'Plang'
-    end
+    output += "Pling" if number % 3 == 0
+    output += "Plang" if number % 5 == 0
+    output += "Plong" if number % 7 == 0
 
-    if n % 7 == 0
-      output += 'Plong'
-    end
-
-    output = n.to_s if output.empty?
+    output = number.to_s if output.empty?
 
     output
   end
