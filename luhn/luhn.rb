@@ -1,17 +1,15 @@
 class Luhn
   def self.valid?(input)
-    stripped = input.gsub(/\s/, '')
-    
-    return false if stripped.length <= 1 || /\D/.match?(stripped)
-
-    digits = stripped.chars.map(&:to_i).reverse
-
-    doubled = digits.each_with_index.map do |digit, index|
-      digit *= 2 if index.odd?
-      digit -= 9 if digit > 9
-      digit
-    end
-
-    doubled.sum % 10 == 0
+    input
+      .delete(' ')
+      .tap { |s| return false unless s[/\A\d\d+\z/] }
+      .chars
+      .map(&:to_i)
+      .reverse
+      .map.with_index { |d, i| i.odd? ? d * 2 : d }
+      .map { |d| d > 9 ? d - 9 : d }
+      .sum
+      .modulo(10)
+      .zero?
   end
 end
